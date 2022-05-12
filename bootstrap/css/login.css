@@ -1,0 +1,36 @@
+.center {
+    margin: 0 auto;
+    float: none!important;
+    display: block;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.login-logo{
+	padding-top: 40px;
+}
+
+.login-logo .logo-name {
+    display: block;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #6c6c6c;
+}
+
+p {
+    display: block;
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 22px;
+    margin: 0px 0px 10px 0px;
+    font-style: normal;
+    white-space: normal;
+}
+
+body{
+	background-color: #F1F4F9;
+}

@@ -1,0 +1,32 @@
+.overflow{
+    overflow:auto !important;
+}
+
+.content-header > h3{
+	font-size: 24px;
+    font-weight: 300;
+    color: #74767d;
+}
+.content-header > small{
+	color: #74767d;
+}
+
+/* Button sharp */
+.btn.sharp {        
+    border-radius:0;
+    border-color: #F25656;
+    background-color: #F25656;    
+    margin-top: 2%;    
+}
+
+.btn-primary.sharp:hover, .btn-primary.sharp:focus, .btn-primary.sharp:active, .btn-primary.sharp.active, .open > .dropdown-toggle.btn-primary {
+    color: #ECF0F1;
+    background: #0099cc;
+    border-color: #0099cc;
+}
+.btn-primary.sharp:active, .btn-primary.sharp.active {
+    border-color: #00AEFF;
+    color: #00AEFF;
+    box-shadow: none;
+}
+/* Button sharp */
