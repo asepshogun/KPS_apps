@@ -77,12 +77,12 @@ class Dor_v3 extends CI_Controller {
 	public function UpdateDataSetup()
 	{
 		$data=$this->input->post();
-		$id=$data['KPS_DELIVERY_ORDER_RETUR_ID'];
-		// $kps_data_master_cluster_id=$data['kps_data_master_cluster_id'];
-		// unset($data['kps_data_master_cluster_id']);
-		$data['date_update']=date('Y-m-d');
-		$updateData=$this->m_orp->updateStatDelDor($data,$id);
-		if ($updateData) {
+		$a_procedure = "CALL dor_update_byid (?,?,?,?,?,?,?,?,?,?)";
+		$updateData = $this->db->query( $a_procedure, array('KPS_DELIVERY_ORDER_RETUR_ID'=>$data['KPS_DELIVERY_ORDER_RETUR_ID'], 'KPS_DO_RETUR_NO'=>$data['KPS_DO_RETUR_NO'], 'OUTGOING_RETUR_PRODUCT_ID_DO'=>$data['OUTGOING_RETUR_PRODUCT_ID_DO'], 'KPS_DO_REV_NO'=>'123456789', 'KPS_DO_RETUR_MADE_BY'=>$data['KPS_DO_RETUR_MADE_BY'], 'KPS_DO_RETUR_APPROVE_BY'=>$data['KPS_DO_RETUR_APPROVE_BY'],'KPS_DELIVERY_ORDER_NOTE'=>'KPS_DELIVERY_ORDER_NOTE', 'DO_retur_rev_no'=>$data['DO_retur_rev_no'],'KPS_CUSTOMER_PLANT_ID_DO'=>$data['KPS_CUSTOMER_PLANT_ID_DO'], 'date_update'=>date('Y-m-d')));
+
+		$num = $updateData->conn_id->affected_rows;
+		$rslt = print_r($num, true);
+		if ($rslt == "1") {
 			$row['pesan']="Update data has been succeed";
 		}else{
 			$row['pesan']="Update data has been failed";
@@ -91,17 +91,13 @@ class Dor_v3 extends CI_Controller {
 	}
 	public function DeleteDataSetup()
 	{
-		// unset($data['kps_data_master_cluster_id']);
-		// $data['kps_cluster_last_update_name']=$this->session->userdata('name');
-
 		$data_id=$this->input->post();
-		$id=$data_id['id'];
-		$data['date_delete']=date('Y-m-d');
-		$data['status_delete']=1;
-		$data['OUTGOING_RETUR_PRODUCT_ID_DO']=0;
-		
-		$updateData=$this->m_orp->updateStatDelDor($data,$id);
-		if ($updateData) {
+
+		$a_procedure = "CALL dor_del_byupdate_status (?,?,?)";
+		$updateData = $this->db->query( $a_procedure, array('KPS_DELIVERY_ORDER_RETUR_ID'=>$data_id['id'], 'date_delete'=>date('Y-m-d'),'status_delete'=>1) );
+		$num = $updateData->conn_id->affected_rows;
+		$rslt = print_r($num, true);
+		if ($rslt == "1") {
 			$row['pesan']="Delete data has been succeed";
 		}else{
 			$row['pesan']="Delete data has been failed";
